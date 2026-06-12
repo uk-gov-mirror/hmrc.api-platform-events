@@ -10,7 +10,7 @@ object AppDependencies {
 
   private lazy val dependencies = Seq(
     "uk.gov.hmrc"            %% "bootstrap-backend-play-30"       % bootstrapVersion,
-    "io.github.samueleresca" %% "pekko-quartz-scheduler"          % "1.1.0-pekko-1.0.x",
+    "io.github.samueleresca" %% "pekko-quartz-scheduler"          % "1.3.0-pekko-1.1.x",
     "uk.gov.hmrc.mongo"      %% "hmrc-mongo-play-30"              % hmrcMongoVersion,
     "uk.gov.hmrc"            %% "api-platform-application-events" % appEventsVersion
   )
