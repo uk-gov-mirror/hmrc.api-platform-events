@@ -51,12 +51,12 @@ class QueryEventsController @Inject() (
     with ApplicationLogger {
 
   import QueryEventsController._
-  import uk.gov.hmrc.apiplatform.modules.common.domain.services.EnumJsonHelper.fromScreamingSnakeCase
+  import uk.gov.hmrc.apiplatform.modules.common.domain.services.EnumJsonHelper.fromSnakeCase
 
   def query(rawApplicationId: UUID, eventTag: Option[EventTag], actorType: Option[String]) = Action.async { _ =>
     val applicationId = ApplicationId(rawApplicationId)
     service
-      .fetchEventsBy(applicationId, eventTag, actorType.flatMap(text => ActorType.apply(fromScreamingSnakeCase(text))))
+      .fetchEventsBy(applicationId, eventTag, actorType.flatMap(text => ActorType.apply(fromSnakeCase(text))))
       .map(seq =>
         if (seq.isEmpty) {
           NotFound("No application changes found")
