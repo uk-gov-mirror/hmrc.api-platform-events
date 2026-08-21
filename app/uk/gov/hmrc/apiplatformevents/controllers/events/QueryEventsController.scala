@@ -24,6 +24,7 @@ import play.api.libs.json.{Json, OFormat}
 import play.api.mvc.*
 import play.api.{Configuration, Environment}
 import uk.gov.hmrc.apiplatform.modules.common.domain.models.*
+import uk.gov.hmrc.apiplatform.modules.common.domain.services.EnumJsonHelper.fromSnakeCase
 import uk.gov.hmrc.apiplatform.modules.events.applications.domain.models.EventTag
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -51,7 +52,6 @@ class QueryEventsController @Inject() (
     with ApplicationLogger {
 
   import QueryEventsController._
-  import uk.gov.hmrc.apiplatform.modules.common.domain.services.EnumJsonHelper.fromSnakeCase
 
   def query(rawApplicationId: UUID, eventTag: Option[EventTag], actorType: Option[String]) = Action.async { _ =>
     val applicationId = ApplicationId(rawApplicationId)

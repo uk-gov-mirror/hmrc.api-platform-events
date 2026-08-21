@@ -3,11 +3,12 @@ import sbt.*
 object AppDependencies {
   def apply(): Seq[ModuleID] = dependencies ++ testDependencies
 
-  val bootstrapVersion    = "10.8.0"
-  val hmrcMongoVersion    = "2.13.0"
-  val commonDomainVersion = "1.4.0"
-  val appDomainVersion    = "1.6.0"
-  val appEventsVersion    = "1.3.0"
+  lazy val bootstrapVersion    = "10.8.0"
+  lazy val hmrcMongoVersion    = "2.13.0"
+
+  lazy val commonDomainVersion = "1.4.0"
+  lazy val appEventsVersion    = "1.3.0"
+  lazy val appDomainVersion    = "1.6.0"
 
   private val dependencies = Seq(
     "uk.gov.hmrc"            %% "bootstrap-backend-play-30"       % bootstrapVersion,
@@ -18,11 +19,10 @@ object AppDependencies {
     "uk.gov.hmrc"            %% "api-platform-application-events" % appEventsVersion
   )
 
-  private val testDependencies = Seq(
-    "uk.gov.hmrc"            %% "bootstrap-test-play-30"                   % bootstrapVersion,
-    "org.scalatestplus"      %% "mockito-5-18"                             % "3.2.19.0",
-    "uk.gov.hmrc.mongo"      %% "hmrc-mongo-test-play-30"                  % hmrcMongoVersion,
-    "uk.gov.hmrc"            %% "api-platform-common-domain-fixtures"      % commonDomainVersion,
+  private lazy val testDependencies = Seq(
+    "uk.gov.hmrc"            %% "bootstrap-test-play-30"              % bootstrapVersion,
+    "uk.gov.hmrc.mongo"      %% "hmrc-mongo-test-play-30"             % hmrcMongoVersion,
+    "uk.gov.hmrc"            %% "api-platform-common-domain-fixtures" % commonDomainVersion,
     "uk.gov.hmrc"            %% "api-platform-application-domain-fixtures" % appDomainVersion
   ).map(m => m % "test")
 }
